@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 from setuptools import setup, find_packages
 
-setup(name = "MasterMind", version = "0.1", packages = find_packages())
+setup(name = "mastermind", version = "1.0.1", packages = find_packages())
