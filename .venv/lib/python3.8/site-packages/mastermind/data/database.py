@@ -2,17 +2,17 @@
 
 # built-in imports
 from pathlib import Path
-
-# built-in imports
 import sqlite3
+
+# local imports
 import mastermind
 
 class Database:
     def __init__(self, db_path=None):
-        self.path = db_path
-        if self.path == None:
-            self.path = f'{Path(mastermind.__file__).parent}/data/Database.db'
-        self._connection = sqlite3.connect(self.path)
+        if db_path == None:
+            db_path = f'{Path(mastermind.__file__).parent}/data/Database.db'
+        self._connection = sqlite3.connect(db_path)
+        #self._connection.execute('PRAGMA foreign_keys = 1')
         self._cursor = self.connection.cursor()
 
     def __enter__(self):
