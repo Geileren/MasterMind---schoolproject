@@ -2,7 +2,7 @@
 
 # built-in imports
 import tkinter as tk
-
+import time
 # local imports
 
 
@@ -12,5 +12,4 @@ class GameMenuPage(tk.Frame):
         self.main = main
         self.draw_widget()
 
-    def draw_widget(self):
-        pass
+

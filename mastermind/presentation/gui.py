@@ -14,7 +14,7 @@ class MainApp(tk.Frame):
         self.draw_widget()
 
     def draw_widget(self):
-        GameMenuPage().grid(sticky='NEWS')
+        GameMenuPage(self.main).grid(column=1, row=1)
 
 
 def main():
