@@ -5,7 +5,7 @@ import tkinter as tk
 # local imports
 
 
-class GameMenuPage(tk.Frame):
+class GamePage(tk.Frame):
     def __init__(self, main=None):
         super().__init__(main)
         self.main = main
@@ -13,5 +13,3 @@ class GameMenuPage(tk.Frame):
 
     def draw_widget(self):
         pass
-
-
