@@ -10,6 +10,12 @@ class SettingsMenuPage(tk.Frame):
         super().__init__(main)
         self.main = main
         self.draw_widget()
+        self.rowconfigure(1, weight=1)
+        self.columnconfigure(1, weight=1)
+
+
 
     def draw_widget(self):
-        pass
+
+        self.frame = tk.Frame(self)
+        self.frame.grid(column=1, row=1)
