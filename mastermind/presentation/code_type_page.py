@@ -9,6 +9,7 @@ class CodeInputPage(tk.Frame):
     def __init__(self, main=None):
         super().__init__(main)
         self.main = main
+        self.config(bg="#4c566a")
         self.draw_widget()
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
@@ -18,5 +19,6 @@ class CodeInputPage(tk.Frame):
     def draw_widget(self):
 
         # Overall frame
-        self.frame = tk.Frame(self)
+        self.frame = tk.Frame(self, bg="#4c566a")
+
         self.frame.grid(column=1, row=1)

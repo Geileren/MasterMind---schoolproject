@@ -11,7 +11,7 @@ class GameMenuPage(tk.Frame):
         self.main = main
         self.draw_widget()
         self.main.geometry('500x500')
-        self.config(bg="#3B4252")
+        self.config(bg="#2E3440")
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
 
@@ -19,16 +19,16 @@ class GameMenuPage(tk.Frame):
 
     def draw_widget(self):
 
-        self.frame = tk.Frame(self, bg="#3B4252")
+        self.frame = tk.Frame(self, bg="#2E3440")
         self.frame.grid(column=1, row=1)
 
-        self.new_game_button = tk.Button(self.frame, text="Start et nyt spil", command=self.new_game, bg="#5e81ac")
+        self.new_game_button = tk.Button(self.frame, text="Start et nyt spil", command=self.new_game, bg="#434C5E", fg="#8fbcbb")
         self.new_game_button.grid(column=1, row=1)
 
-        self.load_game_button = tk.Button(self.frame, text="Genindlæs et gemt spil", bg="#5e81ac")
+        self.load_game_button = tk.Button(self.frame, text="Genindlæs et gemt spil", bg="#434C5E", fg="#8fbcbb")
         self.load_game_button.grid(column=1, row=2)
 
-        self.error_label = tk.Label(self.frame, bg="#3B4252")
+        self.error_label = tk.Label(self.frame, bg="#2E3440", fg="#8fbcbb")
         self.error_label.grid(column=1, row=3)
 
 
