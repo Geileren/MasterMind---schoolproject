@@ -3,9 +3,9 @@
 # built-in imports
 import tkinter as tk
 # local imports
+from mastermind.presentation.game_page import GamePage
 
-
-class GamePage(tk.Frame):
+class CodeInputPage(tk.Frame):
     def __init__(self, main=None):
         super().__init__(main)
         self.main = main
@@ -17,6 +17,6 @@ class GamePage(tk.Frame):
 
     def draw_widget(self):
 
+        # Overall frame
         self.frame = tk.Frame(self)
         self.frame.grid(column=1, row=1)
-

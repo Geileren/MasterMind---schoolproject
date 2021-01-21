@@ -3,7 +3,8 @@
 # built-in imports
 import tkinter as tk
 # local imports
-
+from mastermind.presentation.game_page import GamePage
+from mastermind.presentation.code_type_page import CodeInputPage
 
 class SettingsMenuPage(tk.Frame):
     def __init__(self, main=None):
@@ -18,7 +19,6 @@ class SettingsMenuPage(tk.Frame):
     def draw_widget(self):
 
         # Overall frame
-
         self.frame = tk.Frame(self)
         self.frame.grid(column=1, row=1)
 
@@ -40,16 +40,15 @@ class SettingsMenuPage(tk.Frame):
         self.type_code_text = tk.Label(self.frame, text="Indtast egen kode")
         self.type_code_text.grid(column=2, row=2)
 
-        self.auto_code_radio = tk.Radiobutton(self.frame, variable=self.code_var, value=1)
+        self.auto_code_radio = tk.Radiobutton(self.frame, variable=self.code_var, value=0)
         self.auto_code_radio.grid(column=1, row=3)
 
-        self.type_code_radio = tk.Radiobutton(self.frame, variable=self.code_var, value=2)
+        self.type_code_radio = tk.Radiobutton(self.frame, variable=self.code_var, value=1)
         self.type_code_radio.grid(column=2, row=3)
 
         self.code_var.set(1)
 
         # Multi color settings and vars
-
         self.multi_color_var = tk.IntVar()
 
         self.multi_color_text = tk.Label(self.frame, text="Den samme farve må optræde flere gange i koden")
@@ -62,4 +61,15 @@ class SettingsMenuPage(tk.Frame):
         self.start_button.grid(column=1, row=5)
 
     def start(self):
-        print(self.code_var.get())
+        # needs logic-layer functions
+
+
+        if self.code_var.get() == 0:
+            pass
+        else:
+            CodeInputPage(self.main).grid(column=1, row=1, sticky="NEWS")
+
+
+        #print(self.multi_color_var.get())
+
+        #print(self.galaxy_var.get())
