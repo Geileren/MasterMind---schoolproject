@@ -31,5 +31,6 @@ class GameMenuPage(tk.Frame):
         self.error_label.grid(column=1, row=3)
 
 
+
     def new_game(self):
         SettingsMenuPage(self.main).grid(column=1, row=1, sticky="NEWS")
