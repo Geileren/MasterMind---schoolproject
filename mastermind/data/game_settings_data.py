@@ -1,12 +1,11 @@
 #! /usr/bin/env python
 
 # local imports
-from mastermind.data.database import Database
+from mastermind.data.utils.database import Database
 
 class GameSettings:
     def __init__(self, db_path=None):
-        self.path = db_path
-        with Database(self.path) as db:
+        with Database(db_path) as db:
             db.execute('''CREATE TABLE IF NOT EXISTS GameSettings (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
@@ -16,3 +15,12 @@ class GameSettings:
                             time TEXT NOT NULL
                             )
                            ''')
+
+    def add(self, name, color_code, usable_colors, rounds, time):
+        pass
+
+    def remove(self, id):
+        pass
+
+    def get_all(self, id):
+        pass

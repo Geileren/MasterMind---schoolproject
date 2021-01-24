@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 # local imports
-from mastermind.data.database import Database
+from mastermind.data.utils.database import Database
 
 class Gameplay:
     def __init__(self, db_path=None):
