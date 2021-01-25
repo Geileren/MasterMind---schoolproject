@@ -25,7 +25,7 @@ class GameMenuPage(tk.Frame):
         self.new_game_button = tk.Button(self.frame, text="Start et nyt spil", command=self.new_game, bg="#434C5E", fg="#8fbcbb")
         self.new_game_button.grid(column=1, row=1)
 
-        self.load_game_button = tk.Button(self.frame, text="Genindlæs et gemt spil", bg="#434C5E", fg="#8fbcbb")
+        self.load_game_button = tk.Button(self.frame, text="Genindlæs et gemt spil", bg="#434C5E", fg="#8fbcbb", command=self.load_save)
         self.load_game_button.grid(column=1, row=2)
 
         self.error_label = tk.Label(self.frame, bg="#2E3440", fg="#8fbcbb")
@@ -35,3 +35,6 @@ class GameMenuPage(tk.Frame):
 
     def new_game(self):
         SettingsMenuPage(self.main).grid(column=1, row=1, sticky="NEWS")
+
+    def load_save(self):
+        self.error_label.config(text="Denne funktion er ikke implementeret endnu")

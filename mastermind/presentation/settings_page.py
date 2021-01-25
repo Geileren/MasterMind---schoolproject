@@ -71,6 +71,3 @@ class SettingsMenuPage(tk.Frame):
             CodeInputPage(self.main).grid(column=1, row=1, sticky="NEWS")
 
 
-        #print(self.multi_color_var.get())
-
-        #print(self.galaxy_var.get())
