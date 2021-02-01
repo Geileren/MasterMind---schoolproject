@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 
+from pathlib import Path
+import mastermind
+
 # local imports
 from mastermind.data.database import Database
 
@@ -16,3 +19,11 @@ class GameSettings:
                             time TEXT NOT NULL
                             )
                            ''')
+    
+    def add(self, name, color_code, usable_colors, rounds, time):
+        with Database() as db:
+            db.execute('INSERT INTO GameSettings (name, color_code, usable_colors, rounds, time) VALUES (?,?,?,?,?)', (name, color_code, usable_colors, rounds, time))
+
+
+if __name__ == '__main__':
+    GameSettings().add('test', "('red', 'blue')", "('red', 'blue', 'green')", '10', '2')
