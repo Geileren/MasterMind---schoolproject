@@ -13,18 +13,19 @@ class GameSettings:
                             color_code TEXT NOT NULL,
                             usable_colors INTEGER NOT NULL,
                             rounds INTEGER NOT NULL,
+                            rounds_played INTEGER NOT NULL,
                             time TEXT NOT NULL
                             )
                            ''')
     
-    def add(self, name, color_code_raw, usable_colors, rounds, time):
+    def add(self, name, color_code_raw, usable_colors, rounds, rounds_played, time):
         color_code = '#'.join(color_code_raw)
         with Database() as db:
-            db.execute('INSERT INTO GameSettings (name, color_code, usable_colors, rounds, time) VALUES (?,?,?,?,?)', (name, color_code, usable_colors, rounds, time))
+            db.execute('INSERT INTO GameSettings (name, color_code, usable_colors, rounds, rounds_played, time) VALUES (?,?,?,?,?,?)', (name, color_code, usable_colors, rounds, rounds_played, time))
 
     def get(self, id):
         with Database() as db:
-            return db.query_one('SELECT * FROM GameSettings WHERE id=?', (id,))
+            return db.query_one('SELECT * FROM GameSettings WHERE id=?', (id,))[0]
 
     def get_all(self):
         with Database() as db:
