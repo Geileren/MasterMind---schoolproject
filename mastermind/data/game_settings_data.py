@@ -14,8 +14,8 @@ class GameSettings:
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
                             color_code TEXT NOT NULL,
-                            usable_colors TEXT NOT NULL,
-                            rounds TEXT NOT NULL,
+                            usable_colors INTEGER NOT NULL,
+                            rounds INTEGER NOT NULL,
                             time TEXT NOT NULL
                             )
                            ''')
@@ -24,6 +24,8 @@ class GameSettings:
         with Database() as db:
             db.execute('INSERT INTO GameSettings (name, color_code, usable_colors, rounds, time) VALUES (?,?,?,?,?)', (name, color_code, usable_colors, rounds, time))
 
+    def get(self, id):
+        pass
 
-if __name__ == '__main__':
-    GameSettings().add('test', "('red', 'blue')", "('red', 'blue', 'green')", '10', '2')
+    def remove(self, id):
+        pass

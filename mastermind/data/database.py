@@ -43,12 +43,16 @@ class Database:
     def execute(self, sql, params=None):
         self.cursor.execute(sql, params or ())
 
-    def fetchall(self):
+    def fetch_all(self):
         return self.cursor.fetchall()
 
-    def fetchone(self):
+    def fetch_one(self):
         return self.cursor.fetchone()
 
-    def query(self, sql, params=None):
+    def query_all(self, sql, params=None):
         self.cursor.execute(sql, params or ())
-        return self.fetchall()
+        return self.fetch_all()
+
+    def query_one(self, sql, params=None):
+        self.cursor.execute(sql, params or ())
+        return self.fetch_one()
