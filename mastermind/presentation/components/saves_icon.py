@@ -22,3 +22,10 @@ class Save_icon:
         self.frame.grid(column=self.column, row=self.row)
 
         self.status_label = tk.Label(self.frame, text=f"Status: {self.status_text}")
+        self.status_label.grid(column=1, row=1)
+
+        self.load_button = tk.Button(self.frame, text="Hent Spil", command=self.load_game)
+        self.load_button.grid(column=1, row=2)
+
+    def load_game(self):
+        pass

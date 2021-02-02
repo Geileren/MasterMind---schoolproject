@@ -3,7 +3,7 @@
 # built-in imports
 import tkinter as tk
 # local imports
-
+from mastermind.presentation.components.saves_icon import Save_icon
 
 class SavesMenuPage(tk.Frame):
     def __init__(self, main=None):
@@ -19,3 +19,6 @@ class SavesMenuPage(tk.Frame):
 
         self.frame = tk.Frame(self)
         self.frame.grid(column=1, row=1)
+
+        for i in range(3):
+            Save_icon(self.frame, i+1, column=i+1, row=1)
