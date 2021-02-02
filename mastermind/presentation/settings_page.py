@@ -66,6 +66,7 @@ class SettingsMenuPage(tk.Frame):
 
 
         if self.code_var.get() == 0:
+            CodeInputPage(self.main).grid(column=1, row=1, sticky="NEWS")
             pass
         else:
             CodeInputPage(self.main).grid(column=1, row=1, sticky="NEWS")

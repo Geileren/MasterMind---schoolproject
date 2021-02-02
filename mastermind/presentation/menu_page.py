@@ -4,6 +4,7 @@
 import tkinter as tk
 # local imports
 from mastermind.presentation.settings_page import SettingsMenuPage
+from mastermind.presentation.saves_menu import SavesMenuPage
 
 class GameMenuPage(tk.Frame):
     def __init__(self, main=None):
@@ -37,4 +38,5 @@ class GameMenuPage(tk.Frame):
         SettingsMenuPage(self.main).grid(column=1, row=1, sticky="NEWS")
 
     def load_save(self):
-        self.error_label.config(text="Denne funktion er ikke implementeret endnu")
+        SavesMenuPage(self.main).grid(column=1, row=1, sticky="NEWS")
+        #self.error_label.config(text="Denne funktion er ikke implementeret endnu")

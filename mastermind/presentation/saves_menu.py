@@ -12,12 +12,13 @@ class SavesMenuPage(tk.Frame):
         self.draw_widget()
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
+        self.config(bg="#2E3440")
 
 
 
     def draw_widget(self):
 
-        self.frame = tk.Frame(self)
+        self.frame = tk.Frame(self, bg="#2E3440")
         self.frame.grid(column=1, row=1)
 
         for i in range(3):

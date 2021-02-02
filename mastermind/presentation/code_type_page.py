@@ -20,5 +20,10 @@ class CodeInputPage(tk.Frame):
 
         # Overall frame
         self.frame = tk.Frame(self, bg="#4c566a")
-
         self.frame.grid(column=1, row=1)
+
+        self.start_but = tk.Button(self.frame, text="Din Mor Thien", command=self.start)
+        self.start_but.grid(column=1, row=1)
+
+    def start(self):
+        GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
