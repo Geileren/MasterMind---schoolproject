@@ -10,8 +10,11 @@ import mastermind
 class Database:
     def __init__(self, db_path=None):
         if db_path == None:
-            db_path = f'{Path(mastermind.__file__).parent}/data/Database.db'
-        self._connection = sqlite3.connect(db_path)
+            self.path = f'{Path(mastermind.__file__).parent}/data/Database.db'
+        else:
+            self.path = db_path
+            
+        self._connection = sqlite3.connect(self.path)
         #self._connection.execute('PRAGMA foreign_keys = 1')
         self._cursor = self.connection.cursor()
 
