@@ -4,7 +4,7 @@ from mastermind.data.gameplay_data import
 
 class MastermindLogic():
     def __init__(self):
-
+        pass
 
     # Antallet af rigtige gæt
     def checkGuess(self, colorCode, userCode):
@@ -27,7 +27,7 @@ class MastermindLogic():
 
 
 
-color_list = []
+color_list = ["#BF616A", "#D08770", "#EBCB8B", "A3BE8C", "#B48EAD", "#8F7529", "1B308F", "#566DDB"]
 
 if __name__ == "__main__":
     main()
