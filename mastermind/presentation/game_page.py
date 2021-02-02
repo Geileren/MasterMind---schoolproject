@@ -2,8 +2,10 @@
 
 # built-in imports
 import tkinter as tk
+
 # local imports
 from mastermind.logic.logic import
+
 
 class GameButton():
     def __init__(self, root, x, y, parent):

@@ -2,8 +2,10 @@
 
 # built-in imports
 import tkinter as tk
+
 # local imports
 from mastermind.presentation.components.saves_icon import Save_icon
+
 
 class SavesMenuPage(tk.Frame):
     def __init__(self, main=None):
@@ -14,10 +16,7 @@ class SavesMenuPage(tk.Frame):
         self.columnconfigure(1, weight=1)
         self.config(bg="#2E3440")
 
-
-
     def draw_widget(self):
-
         self.frame = tk.Frame(self, bg="#2E3440")
         self.frame.grid(column=1, row=1)
 

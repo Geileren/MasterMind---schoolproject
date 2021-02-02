@@ -2,9 +2,11 @@
 
 # built-in imports
 import tkinter as tk
+
 # local imports
 from mastermind.presentation.settings_page import SettingsMenuPage
 from mastermind.presentation.saves_menu import SavesMenuPage
+
 
 class GameMenuPage(tk.Frame):
     def __init__(self, main=None):
@@ -15,8 +17,6 @@ class GameMenuPage(tk.Frame):
         self.config(bg="#2E3440")
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
-
-
 
     def draw_widget(self):
 
@@ -31,8 +31,6 @@ class GameMenuPage(tk.Frame):
 
         self.error_label = tk.Label(self.frame, bg="#2E3440", fg="#8fbcbb")
         self.error_label.grid(column=1, row=3)
-
-
 
     def new_game(self):
         SettingsMenuPage(self.main).grid(column=1, row=1, sticky="NEWS")

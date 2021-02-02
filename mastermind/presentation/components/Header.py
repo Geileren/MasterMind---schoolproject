@@ -1,8 +1,8 @@
+# built-in imports
 import tkinter as tk
 
 class Header(tk.Frame):
     """The top banner of the aplication"""
-
     def __init__(self, main):
         super().__init__(main)
         self.main = main

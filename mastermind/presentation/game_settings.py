@@ -3,9 +3,9 @@
 # built-in imports
 import tkinter as tk
 
+
 class GameSettings(tk.Frame):
     """A frame for the game settings"""
-
     def __init__(self, main):
         super().__init__(main)
         self.main = main
@@ -27,10 +27,7 @@ class GameSettings(tk.Frame):
         # Radiobuttons
         self.galaxyBrainBox = tk.Radiobutton(self)
 
-
         # Frame
-
-
 
 
 def main():

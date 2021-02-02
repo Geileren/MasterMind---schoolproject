@@ -2,9 +2,11 @@
 
 # built-in imports
 import tkinter as tk
+
 # local imports
 from mastermind.presentation.game_page import GamePage
 from mastermind.presentation.code_type_page import CodeInputPage
+
 
 class SettingsMenuPage(tk.Frame):
     def __init__(self, main=None):
@@ -14,8 +16,6 @@ class SettingsMenuPage(tk.Frame):
         self.config(bg="#2E3440")
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
-
-
 
     def draw_widget(self):
 
@@ -30,7 +30,6 @@ class SettingsMenuPage(tk.Frame):
         self.galaxy_var = tk.IntVar()
         self.galaxy_chech = tk.Checkbutton(self.frame, variable=self.galaxy_var, bg="#2E3440")
         self.galaxy_chech.grid(column=2, row=1)
-
 
         # Code settings widgets and vars
         self.code_var = tk.IntVar()
@@ -63,7 +62,6 @@ class SettingsMenuPage(tk.Frame):
 
     def start(self):
         # needs logic-layer functions
-
 
         if self.code_var.get() == 0:
             CodeInputPage(self.main).grid(column=1, row=1, sticky="NEWS")
