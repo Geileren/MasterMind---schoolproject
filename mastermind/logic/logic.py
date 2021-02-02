@@ -27,7 +27,7 @@ class MastermindLogic():
 
 
 
-
+color_list = []
 
 if __name__ == "__main__":
     main()
