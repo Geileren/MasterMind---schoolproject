@@ -4,9 +4,8 @@
 from mastermind.data.database import Database
 
 class GameSettings:
-    def __init__(self, db_path=None):
-        self.path = db_path
-        with Database(self.path) as db:
+    def __init__(self, path=None):
+        with Database(path) as db:
             db.execute('''CREATE TABLE IF NOT EXISTS GameSettings (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
