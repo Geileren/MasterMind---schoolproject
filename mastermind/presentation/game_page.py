@@ -4,7 +4,7 @@
 import tkinter as tk
 
 # local imports
-from mastermind.logic.logic import
+from mastermind.logic.logic import MastermindLogic
 
 
 class GameButton():

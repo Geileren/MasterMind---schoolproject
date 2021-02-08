@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from mastermind.data.gameplay_data import
+from mastermind.data.gameplay_data import Gameplay
 
 class MastermindLogic():
     def __init__(self):
