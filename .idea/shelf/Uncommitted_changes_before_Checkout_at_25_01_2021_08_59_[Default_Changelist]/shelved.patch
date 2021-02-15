@@ -1,0 +1,19 @@
+Index: mastermind/data/testing/data_unittest.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#!/usr/bin/env python3\r\n\r\nimport unittest\r\n\r\nclass data_unittest(unittest.TestCase):\r\n    def setUp(self):\r\n        pass\r\n\r\n    def test_create(self):\r\n        pass\r\n\r\n    def test_read(self):\r\n        pass\r\n\r\n    def test_update(self):\r\n        pass\r\n\r\n    def test_delete(self):\r\n        pass\r\n\r\n    def tearDown(self):\r\n        pass\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- mastermind/data/testing/data_unittest.py	(revision d403f5515c6cda04c15cfbaef91a9dad5a131d5e)
++++ mastermind/data/testing/data_unittest.py	(date 1611561425075)
+@@ -19,7 +19,4 @@
+         pass
+ 
+     def tearDown(self):
+-        pass
+-
+-
+-
++        pass
+\ No newline at end of file

@@ -3,12 +3,20 @@
 # built-in imports
 import tkinter as tk
 # local imports
+<<<<<<< HEAD
 #<<<<<<< HEAD
 #from mastermind.logic.logic import
 
 #=======
 from mastermind.logic.logic import color_list
 #>>>>>>> 795c256316fd72c1204c82e53872370ed958ca15
+=======
+
+#from mastermind.logic.logic import
+
+from mastermind.logic.logic import color_list
+
+>>>>>>> 15f6894b0fd015d63bf351b009315454dd0b31cb
 
 class GameButton():
     def __init__(self, root, x, y, parent):
