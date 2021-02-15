@@ -6,7 +6,7 @@ class MastermindLogic():
     def __init__(self):
         pass
 
-    # Antallet af rigtige gæt
+    # Amount of correct correct guesses
     def checkGuess(self, colorCode, userCode):
         self.correctGuess = 0
         for i in range(len(colorCode)):
@@ -15,7 +15,7 @@ class MastermindLogic():
         return self.correctGuess
 
 
-    # Hvor mange farver er rigtige i koden
+    # Amount of correct colors
     def checkColor(self, colorCode, userCode):
         self.correctGuess = 0
         for i in range(len(colorCode)):
