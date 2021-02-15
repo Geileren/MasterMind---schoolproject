@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from mastermind.data.gameplay_data import
+from mastermind.data.gameplay_data import Gameplay
 
 class MastermindLogic():
     def __init__(self):
@@ -27,7 +27,7 @@ class MastermindLogic():
 
 
 
-color_list = ["#BF616A", "#D08770", "#EBCB8B", "A3BE8C", "#B48EAD", "#8F7529", "1B308F", "#566DDB"]
+color_list = ["#BF616A", "#D08770", "#EBCB8B", "#A3BE8C", "#B48EAD", "#8F7529", "#1B308F", "#566DDB"]
 
 if __name__ == "__main__":
     main()
