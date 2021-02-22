@@ -3,6 +3,7 @@
 # local imports
 from mastermind.data.database import Database
 
+
 class GameSettings:
     def __init__(self, path=None):
         with Database(path) as db:
@@ -18,7 +19,7 @@ class GameSettings:
                            ''')
     
     def add(self, name, color_code_raw, usable_colors, rounds, rounds_played, time):
-        color_code = '#'.join(color_code_raw)
+        color_code = '_'.join(color_code_raw)
         with Database() as db:
             db.execute('INSERT INTO GameSettings (name, color_code, usable_colors, rounds, rounds_played, time) VALUES (?,?,?,?,?,?)', (name, color_code, usable_colors, rounds, rounds_played, time))
 

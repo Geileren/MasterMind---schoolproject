@@ -98,7 +98,7 @@ class GamePage(tk.Frame):
             i.button.config(state="disabled")
 
     def save_row(self):
-        self.saved_codes = [[i.color for i in self.buttons[len(self.buttons) - 4 * self.current_row:len(self.buttons) - 4 * (self.current_row - 1)]]]
+        self.saved_codes = [i.color for i in self.buttons[len(self.buttons) - 4 * self.current_row:len(self.buttons) - 4 * (self.current_row - 1)]]
         print(self.saved_codes)
 
     def lock_round(self):

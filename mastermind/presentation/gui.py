@@ -23,6 +23,7 @@ def main():
     root = tk.Tk()
     root.rowconfigure(1, weight=1)
     root.columnconfigure(1, weight=1)
+    root.title('')
     MainApp(main=root)
     root.mainloop()
 
