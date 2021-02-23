@@ -63,6 +63,7 @@ class GamePage(tk.Frame):
         self.colormode = "clear"
         self.colormode_status = False
         self.current_row = 0
+        self.logic = MastermindLogic()
 
         
 
@@ -85,8 +86,18 @@ class GamePage(tk.Frame):
 
         self.color_buttons = [ColorButton(self.color_frame, i // 4, i % 4, j, self) for i, j in enumerate(color_list)]
 
-        self.correct_pos_buttons = [tk.Button(self.frame, text="0", width=5, height=2, bg="red", state="disabled").grid(column=2, row=y) for y in range(12)]
-        self.correct_col_buttons = [tk.Button(self.frame, text="0", width=5, height=2, bg="white", state="disabled").grid(column=0, row=y) for y in range(12)]
+        #self.pos_indicators = [tk.Button(self.frame, text="0", width=5, height=2, bg="red", state="disabled").grid(column=2, row=y) for y in range(12)]
+        #self.col_indicators = [tk.Button(self.frame, text="0", width=5, height=2, bg="white", state="disabled").grid(column=0, row=y) for y in range(12)]
+
+        self.col_indicators = []
+        self.pos_indicators = []
+
+        for i in range(12):
+            self.col_indicators.append(tk.Button(self.frame, text="0", width=5, height=2, bg="white", state="disabled"))
+            self.col_indicators[i].grid(column=0, row=i)
+
+            self.pos_indicators.append(tk.Button(self.frame, text="0", width=5, height=2, bg="red", state="disabled"))
+            self.pos_indicators[i].grid(column=2, row=i)
 
         self.next_round_button = tk.Button(self, text="Næste Runde", command=self.next_round)
         self.next_round_button.grid(column=2, row=1, sticky="S", padx=10, pady=10)
@@ -114,4 +125,18 @@ class GamePage(tk.Frame):
     def next_round(self):
         self.lock_row()
         self.save_row()
+
+        self.state = self.logic.check_gamestate(['#99c1de', '#A3BE8C', '#EBCB8B', '#adb8eb'], self.saved_codes)
+        print(self.state[2])
+
+        self.pos_indicators[12 - self.current_row].config(text=str(self.state[1]))
+        self.col_indicators[12 - self.current_row].config(text=str(self.state[2]))
+        
+
+        if self.state[0] == True:
+            print("Skrrt Skrrt MotherFucker")
+        
+
+
+
         self.unlock_row()
