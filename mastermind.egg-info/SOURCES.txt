@@ -9,10 +9,11 @@ mastermind/data/__init__.py
 mastermind/data/database.py
 mastermind/data/game_settings_data.py
 mastermind/data/gameplay_data.py
+mastermind/data/mastermind_data.py
 mastermind/data/testing/__init__.py
 mastermind/data/testing/data_unittest.py
 mastermind/logic/__init__.py
-mastermind/logic/logic.py
+mastermind/logic/mastermind_logic.py
 mastermind/logic/testing/__init__.py
 mastermind/logic/testing/logic_unittest.py
 mastermind/presentation/__init__.py

@@ -4,7 +4,8 @@
 import tkinter as tk
 
 # local imports
-from mastermind.logic.logic import color_list
+from mastermind.data.mastermind_data import color_list
+from mastermind.logic.mastermind_logic import MastermindLogic
 
 class GameButton():
     def __init__(self, root, x, y, parent):
@@ -63,10 +64,13 @@ class GamePage(tk.Frame):
         self.colormode_status = False
         self.current_row = 0
 
+        
+
         self.draw_widget()
         self.unlock_row()
 
     def draw_widget(self):
+        
 
         self.frame = tk.Frame(self)
         self.frame.grid(column=1, row=1, sticky="SW")
@@ -74,11 +78,17 @@ class GamePage(tk.Frame):
         self.color_frame = tk.Frame(self, highlightbackground="black", highlightthickness=2)
         self.color_frame.grid(column=0, row=1, padx=(20,0), pady=10, sticky="SE")
 
-        self.buttons = [GameButton(self.frame, x, y, self) for y in range(12) for x in range(4)]
+        self.game_frame = tk.Frame(self.frame)
+        self.game_frame.grid(column=1, row=0, rowspan=100)
+
+        self.buttons = [GameButton(self.game_frame, x, y, self) for y in range(12) for x in range(4)]
 
         self.color_buttons = [ColorButton(self.color_frame, i // 4, i % 4, j, self) for i, j in enumerate(color_list)]
 
-        self.next_round_button = tk.Button(self, text="Næste Runde", command=self.lock_round)
+        self.correct_pos_buttons = [tk.Button(self.frame, text="0", width=5, height=2, bg="red", state="disabled").grid(column=2, row=y) for y in range(12)]
+        self.correct_col_buttons = [tk.Button(self.frame, text="0", width=5, height=2, bg="white", state="disabled").grid(column=0, row=y) for y in range(12)]
+
+        self.next_round_button = tk.Button(self, text="Næste Runde", command=self.next_round)
         self.next_round_button.grid(column=2, row=1, sticky="S", padx=10, pady=10)
 
     def clear_color_mode(self):
@@ -101,7 +111,7 @@ class GamePage(tk.Frame):
         self.saved_codes = [i.color for i in self.buttons[len(self.buttons) - 4 * self.current_row:len(self.buttons) - 4 * (self.current_row - 1)]]
         print(self.saved_codes)
 
-    def lock_round(self):
+    def next_round(self):
         self.lock_row()
         self.save_row()
         self.unlock_row()
