@@ -66,7 +66,9 @@ class SettingsMenuPage(tk.Frame):
 
         if self.code_var.get() == 0:
             GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
+        elif self.multi_color_var.get() == 1:
+            CodeInputPage(True, self.main).grid(column=1, row=1, sticky="NEWS")
         else:
-            CodeInputPage(self.main).grid(column=1, row=1, sticky="NEWS")
+            CodeInputPage(False, self.main).grid(column=1, row=1, sticky="NEWS")
 
 

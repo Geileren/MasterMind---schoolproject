@@ -14,7 +14,7 @@ class GamePage(tk.Frame):
         super().__init__(main)
         self.main = main
         self.main.geometry("500x600")
-        
+
         self.config(bg="#2E3440")
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)

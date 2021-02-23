@@ -9,7 +9,7 @@ from mastermind.presentation.components.but_types import GameButton, ColorButton
 from mastermind.data.mastermind_data import color_list
 
 class CodeInputPage(tk.Frame):
-    def __init__(self, main=None, multi_color):
+    def __init__(self, multi_color, main=None):
         super().__init__(main)
         self.main = main
         self.config(bg="#4c566a")
@@ -60,16 +60,33 @@ class CodeInputPage(tk.Frame):
 
     def start(self):
         code = self.save_code()
-        if multi_color == False:
+        if "" in code:
+            self.error1()
+        elif self.multi_color == False:
             if self.multi_check(code) == True:
                 #mere shit
                 GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
             else:
-                #fucking Fejl
+                self.error2()
                 pass
+        else:
+            GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
 
-    def error(self):
-        pass
+    def error1(self):
+        self.root1 = tk.Toplevel()
+        tk.Label(self.root1, text="Nogle af kodefelterne er ikke udfyldt, udfyld disse og prøv igen").grid(column=1, row=1)
+        tk.Button(self.root1, text="OK", command=self.close1).grid(column=1, row=2)
+
+    def error2(self):
+        self.root2 = tk.Toplevel()
+        tk.Label(self.root2, text="Du har indtastet den samme farve mere end én gang. Det er ikke tilladt med de nuværende regler. \n Ændre koden og prøv igen").grid(column=1, row=1)
+        tk.Button(self.root2, text="OK", command=self.close2).grid(column=1, row=2)
+
+    def close1(self):
+        self.root1.destroy()
+
+    def close2(self):
+        self.root2.destroy()
 
     def clear_color_mode(self):
         if self.colormode_status == True:
