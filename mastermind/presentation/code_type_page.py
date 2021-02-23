@@ -60,12 +60,13 @@ class CodeInputPage(tk.Frame):
 
     def start(self):
         code = self.save_code()
-        
-        if self.multi_check(code) == True:
-            #mere shit
-            GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
-        else:
-            #fucking Fejl
+        if multi_color == False:
+            if self.multi_check(code) == True:
+                #mere shit
+                GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
+            else:
+                #fucking Fejl
+                pass
 
     def error(self):
         pass
