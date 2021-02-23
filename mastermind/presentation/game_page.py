@@ -6,50 +6,7 @@ import tkinter as tk
 # local imports
 from mastermind.data.mastermind_data import color_list
 from mastermind.logic.mastermind_logic import MastermindLogic
-
-class GameButton():
-    def __init__(self, root, x, y, parent):
-        self.root = root
-        self.x = x
-        self.y = y
-        self.parent = parent
-        self.button = tk.Button(self.root, width=5, height=2, command=self.but_press, state="disabled")
-        self.button.grid(column=self.x, row=self.y)
-        self.color = ""
-
-    def but_press(self):
-        if self.parent.colormode == "clear":
-            pass
-        else:
-            self.color = self.parent.colormode
-            self.button.config(bg=self.color)
-            print(self.color)
-
-
-class ColorButton():
-    def __init__(self, root, x, y, color, parent):
-        self.root = root
-        self.x = x
-        self.y = y
-        self.color = color
-        self.parent = parent
-
-        self.button = tk.Button(self.root, width=5, height=2, bg=self.color, command=self.but_press)
-        self.button.grid(column=self.x, row=self.y)
-
-    def but_press(self):
-        if self.parent.colormode_status == False:
-            self.parent.colormode_status = True
-            self.parent.colormode = self.color
-            self.button.config(relief="sunken")
-        elif self.parent.colormode_status == True:
-            if self.parent.colormode == self.color:
-                self.parent.clear_color_mode()
-            else:
-                self.parent.clear_color_mode()
-                self.parent.colormode_status = True
-                self.parent.colormode = self.color
-                self.button.config(relief="sunken")
+from mastermind.presentation.components.but_types import ColorButton, GameButton
 
 
 class GamePage(tk.Frame):
@@ -57,11 +14,14 @@ class GamePage(tk.Frame):
         super().__init__(main)
         self.main = main
         self.main.geometry("500x600")
+        
         self.config(bg="#2E3440")
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
+
         self.colormode = "clear"
         self.colormode_status = False
+
         self.current_row = 0
         self.logic = MastermindLogic()
 
@@ -102,6 +62,8 @@ class GamePage(tk.Frame):
         self.next_round_button = tk.Button(self, text="Næste Runde", command=self.next_round)
         self.next_round_button.grid(column=2, row=1, sticky="S", padx=10, pady=10)
 
+        tk.Button(self, text="win", command=self.win).grid(column=1,row=4)
+
     def clear_color_mode(self):
         if self.colormode_status == True:
             self.colormode = "clear"
@@ -134,9 +96,17 @@ class GamePage(tk.Frame):
         
 
         if self.state[0] == True:
-            print("Skrrt Skrrt MotherFucker")
+            self.win()
         
-
-
-
         self.unlock_row()
+
+    def win(self):
+        root = tk.Toplevel()
+        root.geometry("200x200")
+        root.rowconfigure(1, weight=1)
+        root.columnconfigure(1, weight=1)
+        top_frame = tk.Frame(root)
+        top_frame.grid(column=1, row=1)
+        tk.Label(top_frame, text="Tyllyke du vandt!").grid(column=1, row=1, columnspan=2)
+        tk.Button(top_frame, text="Afslut").grid(column=1, row=2)
+        tk.Button(top_frame, text="Gå til menuen").grid(column=2, row=2)
