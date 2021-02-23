@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
 class MastermindLogic():
-    def __init__(self):
-        pass
 
-    # Antallet af rigtige gæt
-    def checkGuess(self, colorCode, userCode):
+    # Amount of correct guesses in colorcode
+    def check_guess(self, colorCode, userCode):
         self.correctGuess = 0
         for i in range(len(colorCode)):
             if colorCode[i] == userCode[i]:
@@ -13,11 +11,22 @@ class MastermindLogic():
         return self.correctGuess
 
 
-    # Hvor mange farver er rigtige i koden
-    def checkColor(self, colorCode, userCode):
+    # Amount of correct colors in colorcode
+    def check_color(self, colorCode, userCode):
         self.correctGuess = 0
         for i in range(len(colorCode)):
             if userCode[i] in colorCode:
                 self.correctGuess += 1
-
         return self.correctGuess
+
+
+    def check_win(self, colorCode, userCode):
+        if userCode == colorCode:
+            return True
+        return False
+
+    def check_gamestate(self, colorCode, userCode):
+        self.correct_guesses = self.check_guess(colorCode, userCode)
+        self.correct_colors = self.check_color(colorCode, userCode) - self.correct_guesses
+        return (self.check_win(colorCode, userCode), self.correct_guesses, self.correct_colors)
+    
