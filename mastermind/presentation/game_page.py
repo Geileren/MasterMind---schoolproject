@@ -11,10 +11,13 @@ from mastermind.presentation.components.but_types import ColorButton, GameButton
 
 
 class GamePage(tk.Frame):
-    def __init__(self, main=None):
+    def __init__(self, color_code, main=None):
         super().__init__(main)
         self.main = main
         self.main.geometry("500x600")
+        self.color_code = color_code
+        print(color_code.manual_code)
+
 
         self.config(bg="#2E3440")
         self.rowconfigure(1, weight=1)
@@ -47,9 +50,7 @@ class GamePage(tk.Frame):
 
         self.color_buttons = [ColorButton(self.color_frame, i // 4, i % 4, j, self) for i, j in enumerate(color_list)]
 
-        #self.pos_indicators = [tk.Button(self.frame, text="0", width=5, height=2, bg="red", state="disabled").grid(column=2, row=y) for y in range(12)]
-        #self.col_indicators = [tk.Button(self.frame, text="0", width=5, height=2, bg="white", state="disabled").grid(column=0, row=y) for y in range(12)]
-
+        
         self.col_indicators = []
         self.pos_indicators = []
 
@@ -83,13 +84,13 @@ class GamePage(tk.Frame):
 
     def save_row(self):
         self.saved_codes = [i.color for i in self.buttons[len(self.buttons) - 4 * self.current_row:len(self.buttons) - 4 * (self.current_row - 1)]]
-        print(self.saved_codes)
+        
 
     def next_round(self):
         self.lock_row()
         self.save_row()
 
-        self.state = self.logic.check_gamestate(['#99c1de', '#A3BE8C', '#EBCB8B', '#adb8eb'], self.saved_codes)
+        self.state = self.logic.check_gamestate(self.color_code.manual_code, self.saved_codes)
         print(self.state[2])
 
         self.pos_indicators[12 - self.current_row].config(text=str(self.state[1]))
@@ -102,15 +103,20 @@ class GamePage(tk.Frame):
         self.unlock_row()
 
     def win(self):
-        root = tk.Toplevel()
-        root.geometry("200x200")
-        root.rowconfigure(1, weight=1)
-        root.columnconfigure(1, weight=1)
-        root.grab_set()
+        self.root = tk.Toplevel()
+        self.root.geometry("200x200")
+        self.root.rowconfigure(1, weight=1)
+        self.root.columnconfigure(1, weight=1)
+        self.root.grab_set()
 
-        top_frame = tk.Frame(root)
+        top_frame = tk.Frame(self.root)
         top_frame.grid(column=1, row=1)
 
         tk.Label(top_frame, text="Tyllyke du vandt!").grid(column=1, row=1, columnspan=2)
         tk.Button(top_frame, text="Afslut", command=sys.exit).grid(column=1, row=2)
-        tk.Button(top_frame, text="Gå til menuen").grid(column=2, row=2)
+        tk.Button(top_frame, text="Gå til menuen", command=self.menu_return).grid(column=2, row=2)
+
+    def menu_return(self):
+        self.root.grab_release()
+        self.root.destroy()
+        self.destroy()

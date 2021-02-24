@@ -57,18 +57,26 @@ class SettingsMenuPage(tk.Frame):
         self.multi_color_check = tk.Checkbutton(self.frame, variable=self.multi_color_var, bg="#2E3440")
         self.multi_color_check.grid(column=2, row=4)
 
-        # Start Button
-        self.start_button = tk.Button(self.frame, text="Start spil", command=self.start, bg="#434C5E")
-        self.start_button.grid(column=1, row=5)
+        # Frame and operational buttons
+        self.but_frame = tk.Frame(self.frame)
+        self.but_frame.grid(column=2, row=5)
+
+        self.start_button = tk.Button(self.but_frame, text="Fortsæt", command=self.start, bg="#434C5E")
+        self.start_button.grid(column=2, row=1)
+
+        self.back_button = tk.Button(self.but_frame, text="Tilbage", command=self.destroy)
+        self.back_button.grid(column=1, row=1)
 
     def start(self):
-        # needs logic-layer functions
-
+        
         if self.code_var.get() == 0:
+            self.destroy()
             GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
         elif self.multi_color_var.get() == 1:
             CodeInputPage(True, self.main).grid(column=1, row=1, sticky="NEWS")
+            self.destroy()
         else:
+            self.destroy()
             CodeInputPage(False, self.main).grid(column=1, row=1, sticky="NEWS")
 
 
