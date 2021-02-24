@@ -23,23 +23,26 @@ class GamePage(tk.Frame):
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
 
+        # used for color palette
         self.colormode = "clear"
         self.colormode_status = False
 
+        # logic and currentrow
         self.current_row = 0
         self.logic = MastermindLogic()
 
         
-
+        # draws widget and unlocks first row
         self.draw_widget()
-        self.unlock_row()
+        self.unlock_row() 
 
     def draw_widget(self):
         
-
+        # overall frame
         self.frame = tk.Frame(self)
         self.frame.grid(column=1, row=1, sticky="SW")
 
+        # palette and game buttons and frames
         self.color_frame = tk.Frame(self, highlightbackground="black", highlightthickness=2)
         self.color_frame.grid(column=0, row=1, padx=(20,0), pady=10, sticky="SE")
 
@@ -50,7 +53,7 @@ class GamePage(tk.Frame):
 
         self.color_buttons = [ColorButton(self.color_frame, i // 4, i % 4, j, self) for i, j in enumerate(color_list)]
 
-        
+        # indicators
         self.col_indicators = []
         self.pos_indicators = []
 
@@ -61,10 +64,12 @@ class GamePage(tk.Frame):
             self.pos_indicators.append(tk.Button(self.frame, text="0", width=5, height=2, bg="red", state="disabled"))
             self.pos_indicators[i].grid(column=2, row=i)
 
-        self.next_round_button = tk.Button(self, text="Næste Runde", command=self.next_round)
-        self.next_round_button.grid(column=2, row=1, sticky="S", padx=10, pady=10)
+        # next round button
+        self.next_round_button = tk.Button(self, text="Næste Runde", command=self.next_round, bg="#434C5E", fg="#8fbcbb")
+        self.next_round_button.grid(column=2, row=1, sticky="S", pady=10, padx=10)
 
 
+    # Raises all colorbuttons
     def clear_color_mode(self):
         if self.colormode_status == True:
             self.colormode = "clear"
@@ -72,30 +77,34 @@ class GamePage(tk.Frame):
             for i in self.color_buttons:
                 i.button.config(relief="raised")
 
+    # Unlock the next row/round and increases current_row
     def unlock_row(self):
         self.current_row += 1
         for i in self.buttons[len(self.buttons)-4*self.current_row:len(self.buttons)-4*(self.current_row-1)]:
             i.button.config(state="normal")
 
+    # Locks current row
     def lock_row(self):
         for i in self.buttons[len(self.buttons)-4*self.current_row:len(self.buttons)-4*(self.current_row-1)]:
             i.button.config(state="disabled")
 
+    # saves the current code
     def save_row(self):
         self.saved_codes = [i.color for i in self.buttons[len(self.buttons) - 4 * self.current_row:len(self.buttons) - 4 * (self.current_row - 1)]]
         
-
+    # transition to next round
     def next_round(self):
         self.lock_row()
         self.save_row()
 
+        # checks gamestate
         self.state = self.logic.check_gamestate(self.color_code.manual_code, self.saved_codes)
-        print(self.state[2])
 
+        # updates indicators
         self.pos_indicators[12 - self.current_row].config(text=str(self.state[1]))
         self.col_indicators[12 - self.current_row].config(text=str(self.state[2]))
         
-
+        # checks wether the game is won or lost
         if self.state[0] == True:
             self.win()
         elif self.current_row >= 12:
@@ -104,6 +113,7 @@ class GamePage(tk.Frame):
         self.unlock_row()
 
     def lose(self):
+        # pup-up when the game is lost
         self.root = tk.Toplevel()
         self.root.geometry("200x200")
         self.root.rowconfigure(1, weight=1)
@@ -119,6 +129,7 @@ class GamePage(tk.Frame):
 
 
     def win(self):
+        # pup-up when the game is won
         self.root = tk.Toplevel()
         self.root.geometry("200x200")
         self.root.rowconfigure(1, weight=1)
@@ -133,6 +144,7 @@ class GamePage(tk.Frame):
         tk.Button(top_frame, text="Gå til menuen", command=self.menu_return).grid(column=2, row=2)
 
     def menu_return(self):
+        # returns to start menu
         self.root.grab_release()
         self.root.destroy()
         self.destroy()

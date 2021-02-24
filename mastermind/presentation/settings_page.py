@@ -30,10 +30,10 @@ class SettingsMenuPage(tk.Frame):
         # Code settings widgets and vars
         self.code_var = tk.IntVar()
 
-        self.auto_code_text = tk.Label(self.frame, text="Benyt en automatisk genereret kode", bg="#2E3440")
+        self.auto_code_text = tk.Label(self.frame, text="Benyt en automatisk genereret kode", bg="#2E3440", fg="#8fbcbb")
         self.auto_code_text.grid(column=1, row=2)
 
-        self.type_code_text = tk.Label(self.frame, text="Indtast egen kode", bg="#2E3440")
+        self.type_code_text = tk.Label(self.frame, text="Indtast egen kode", bg="#2E3440", fg="#8fbcbb")
         self.type_code_text.grid(column=2, row=2)
 
         self.auto_code_radio = tk.Radiobutton(self.frame, variable=self.code_var, value=0, bg="#2E3440")
@@ -47,7 +47,7 @@ class SettingsMenuPage(tk.Frame):
         # Multi color settings and vars
         self.multi_color_var = tk.IntVar()
 
-        self.multi_color_text = tk.Label(self.frame, text="Den samme farve må optræde flere gange i koden", bg="#2E3440")
+        self.multi_color_text = tk.Label(self.frame, text="Den samme farve må optræde flere gange i koden", bg="#2E3440", fg="#8fbcbb")
         self.multi_color_text.grid(column=1, row=4)
 
         self.multi_color_check = tk.Checkbutton(self.frame, variable=self.multi_color_var, bg="#2E3440")
@@ -57,26 +57,36 @@ class SettingsMenuPage(tk.Frame):
         self.but_frame = tk.Frame(self.frame)
         self.but_frame.grid(column=2, row=5)
 
-        self.start_button = tk.Button(self.but_frame, text="Fortsæt", command=self.start, bg="#434C5E")
+        self.start_button = tk.Button(self.but_frame, text="Fortsæt", command=self.start, bg="#434C5E", fg="#8fbcbb")
         self.start_button.grid(column=2, row=1)
 
-        self.back_button = tk.Button(self.but_frame, text="Tilbage", command=self.destroy)
+        self.back_button = tk.Button(self.but_frame, text="Tilbage", command=self.destroy, bg="#434C5E", fg="#8fbcbb")
         self.back_button.grid(column=1, row=1)
 
     def start(self):
         logic = MastermindLogic()
+        
         if self.code_var.get() == 0:
+            # a random code is to be generated
             self.destroy()
             color = ColorCode()
+        
             if self.multi_color_var.get() == 1:
+                # the same color can be used multiple times
                 color.make(logic.generate_code(color_list))
             else:
-                color.make(logic.generate_unique_code(color_list))
+                # the same color can be used once
+                color.make(logic.generate_unique_code(color_list))  
             GamePage(color, self.main).grid(column=1, row=1, sticky="NEWS")
+
         elif self.multi_color_var.get() == 1:
-            CodeInputPage(True, self.main).grid(column=1, row=1, sticky="NEWS")
+            # the same color can be used multiple times
             self.destroy()
+            CodeInputPage(True, self.main).grid(column=1, row=1, sticky="NEWS")
+            
+
         else:
+            # the same color can be used once
             self.destroy()
             CodeInputPage(False, self.main).grid(column=1, row=1, sticky="NEWS")
 

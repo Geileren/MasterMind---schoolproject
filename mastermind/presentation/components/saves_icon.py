@@ -1,7 +1,6 @@
 import tkinter as tk
 
 class Save_icon:
-
     def __init__(self, root, nr, column, row):
         self.root = root
         self.nr = nr

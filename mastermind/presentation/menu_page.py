@@ -27,13 +27,14 @@ class GameMenuPage(tk.Frame):
         self.new_game_button = tk.Button(self.frame, text="Start et nyt spil", command=self.new_game, bg="#434C5E", fg="#8fbcbb", width=20)
         self.new_game_button.grid(column=1, row=1)
 
-        self.load_game_button = tk.Button(self.frame, text="Genindlæs et gemt spil", bg="#434C5E", fg="#8fbcbb", command=self.load_save, width=20)
+        self.load_game_button = tk.Button(self.frame, text="Genindlæs et gemt spil", bg="#434C5E", fg="#8fbcbb", command=self.load_save, width=20, state="disabled")
         self.load_game_button.grid(column=1, row=2)
+        
 
         self.end_button = tk.Button(self.frame, text="Afslut program", command=sys.exit, width=20, bg="#434C5E", fg="#8fbcbb")
         self.end_button.grid(column=1, row=3)
 
-        self.error_label = tk.Label(self.frame, bg="#2E3440", fg="#8fbcbb")
+        self.error_label = tk.Label(self.frame, text="Genindlæsning af spil vil blive tilføjet i en senere version", bg="#2E3440", fg="#8fbcbb")
         self.error_label.grid(column=1, row=4)
 
     def new_game(self):
