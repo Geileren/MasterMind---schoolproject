@@ -99,8 +99,25 @@ class GamePage(tk.Frame):
 
         if self.state[0] == True:
             self.win()
-        
+        elif self.current_row >= 12:
+            self.lose()
+
         self.unlock_row()
+
+    def lose(self):
+        self.root = tk.Toplevel()
+        self.root.geometry("200x200")
+        self.root.rowconfigure(1, weight=1)
+        self.root.columnconfigure(1, weight=1)
+        self.root.grab_set()
+
+        top_frame = tk.Frame(self.root)
+        top_frame.grid(column=1, row=1)
+
+        tk.Label(top_frame, text="Desvære du tabte :( \n du løb tør for runder").grid(column=1, row=1, columnspan=2)
+        tk.Button(top_frame, text="Afslut", command=sys.exit).grid(column=1, row=2)
+        tk.Button(top_frame, text="Gå til menuen", command=self.menu_return).grid(column=2, row=2)
+
 
     def win(self):
         self.root = tk.Toplevel()

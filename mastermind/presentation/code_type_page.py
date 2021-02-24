@@ -59,6 +59,7 @@ class CodeInputPage(tk.Frame):
     def save_code(self):
         return [i.color for i in self.buttons]
     
+    # Should be moved to logic-layer in next update 
     def multi_check(self, lst1):
         for i in lst1:
             lst2 = lst1

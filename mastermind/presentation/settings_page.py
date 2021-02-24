@@ -6,7 +6,9 @@ import tkinter as tk
 # local imports
 from mastermind.presentation.game_page import GamePage
 from mastermind.presentation.code_type_page import CodeInputPage
-
+from mastermind.data.mastermind_data import ColorCode
+from mastermind.logic.mastermind_logic import MastermindLogic
+from mastermind.data.mastermind_data import color_list
 
 class SettingsMenuPage(tk.Frame):
     def __init__(self, main=None):
@@ -68,10 +70,15 @@ class SettingsMenuPage(tk.Frame):
         self.back_button.grid(column=1, row=1)
 
     def start(self):
-        
+        logic = MastermindLogic()
         if self.code_var.get() == 0:
             self.destroy()
-            GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
+            color = ColorCode()
+            if self.multi_color_var.get() == 1:
+                color.make(logic.generate_code(color_list))
+            else:
+                color.make(logic.generate_unique_code(color_list))
+            GamePage(color, self.main).grid(column=1, row=1, sticky="NEWS")
         elif self.multi_color_var.get() == 1:
             CodeInputPage(True, self.main).grid(column=1, row=1, sticky="NEWS")
             self.destroy()
