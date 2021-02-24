@@ -22,3 +22,5 @@ class SavesMenuPage(tk.Frame):
 
         for i in range(3):
             Save_icon(self.frame, i+1, column=i+1, row=1)
+        
+        tk.Button(self.frame, text="Tilbage", command=self.destroy).grid(column=4, row=2, pady=25)

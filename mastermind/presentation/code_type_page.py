@@ -7,15 +7,18 @@ import tkinter as tk
 from mastermind.presentation.game_page import GamePage
 from mastermind.presentation.components.but_types import GameButton, ColorButton
 from mastermind.data.mastermind_data import color_list
+from mastermind.data.mastermind_data import ColorCode
 
 class CodeInputPage(tk.Frame):
     def __init__(self, multi_color, main=None):
         super().__init__(main)
         self.main = main
         self.config(bg="#4c566a")
+        self.main.geometry('600x500')
         self.draw_widget()
         self.rowconfigure(1, weight=1)
         self.columnconfigure(1, weight=1)
+        self.color_code = ColorCode()
         
         self.multi_color = multi_color
 
@@ -29,11 +32,15 @@ class CodeInputPage(tk.Frame):
         self.frame = tk.Frame(self, bg="#4c566a")
         self.frame.grid(column=1, row=1)
 
-        self.game_frame = tk.Frame(self.frame)
-        self.game_frame.grid(column=1, row=1)
-
         self.color_frame =tk.Frame(self.frame)
-        self.color_frame.grid(column=2, row=1)
+        self.color_frame.grid(column=1, row=0, columnspan=5, pady=25)
+
+        tk.Label(self.frame, text="Vælg en farve ovenfor og placer den i koden herunder").grid(column=1, row=1, columnspan=5)
+
+        self.game_frame = tk.Frame(self.frame)
+        self.game_frame.grid(column=1, row=2, columnspan=5, pady=5)
+
+        
 
         self.buttons = [GameButton(self.game_frame, x, 1, self) for x in range(4)]
         for i in self.buttons:
@@ -42,15 +49,19 @@ class CodeInputPage(tk.Frame):
         self.color_buttons = [ColorButton(self.color_frame, i // 4, i % 4, j, self) for i, j in enumerate(color_list)]
         
 
-        self.start_but = tk.Button(self.frame, text="Din Mor Thien", command=self.start)
-        self.start_but.grid(column=3, row=2)
+        self.start_but = tk.Button(self.frame, text="Start spil", command=self.start)
+        self.start_but.grid(column=4, row=2, sticky="E")
+
+        self.back_but = tk.Button(self.frame, text="Tilbage til startmenuen", command=self.destroy)
+        self.back_but.grid(column=3, row=2, sticky="E", padx=(400,0))
+
 
     def save_code(self):
         return [i.color for i in self.buttons]
     
-    def multi_check(self, lst):
-        for i in lst:
-            lst2 = lst
+    def multi_check(self, lst1):
+        for i in lst1:
+            lst2 = lst1
             lst2.remove(i)
             for j in lst2:
                 if i == j:
@@ -60,17 +71,24 @@ class CodeInputPage(tk.Frame):
 
     def start(self):
         code = self.save_code()
+        
         if "" in code:
             self.error1()
         elif self.multi_color == False:
             if self.multi_check(code) == True:
-                #mere shit
-                GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
+                
+                self.color_code.make(self.save_code())
+                
+                self.destroy()
+                GamePage(self.color_code, self.main).grid(column=1, row=1, sticky="NEWS")
             else:
                 self.error2()
                 pass
         else:
-            GamePage(self.main).grid(column=1, row=1, sticky="NEWS")
+            self.color_code.make(code)
+            
+            self.destroy()
+            GamePage(self.color_code, self.main).grid(column=1, row=1, sticky="NEWS")
 
     def error1(self):
         self.root1 = tk.Toplevel()
