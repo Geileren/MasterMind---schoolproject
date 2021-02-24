@@ -7,9 +7,9 @@ class ColorCode:
     def __init__(self):
         self.manual_code = []
 
-    def make(self, *args):
-        self.manual_code = [i for i in args]
-    
+    def make(self, colors):
+        self.manual_code = colors
+
     def get(self):
         if self.manual_code != []:
             return self.manual_code
