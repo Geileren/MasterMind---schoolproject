@@ -11,17 +11,15 @@ class GameSettings:
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
                             color_code TEXT NOT NULL,
-                            usable_colors INTEGER NOT NULL,
+                            usable_colors TEXT NOT NULL,
                             rounds INTEGER NOT NULL,
-                            rounds_played INTEGER NOT NULL,
-                            time TEXT NOT NULL
+                            rounds_played INTEGER NOT NULL
                             )
                            ''')
     
-    def add(self, name, color_code_raw, usable_colors, rounds, rounds_played, time):
-        color_code = '_'.join(color_code_raw)
+    def add(self, name, color_code, usable_colors, rounds, rounds_played):
         with Database() as db:
-            db.execute('INSERT INTO GameSettings (name, color_code, usable_colors, rounds, rounds_played, time) VALUES (?,?,?,?,?,?)', (name, color_code, usable_colors, rounds, rounds_played, time))
+            db.execute('INSERT INTO GameSettings (name, color_code, usable_colors, rounds, rounds_played) VALUES (?,?,?,?,?)', (name, color_code, usable_colors, rounds, rounds_played))
 
     def get(self, id):
         with Database() as db:
@@ -34,3 +32,7 @@ class GameSettings:
     def remove(self, id):
         with Database() as db:
             db.execute('DELETE FROM GameSettings WHERE id=?', (id,))
+
+    def get_newest_id(self):
+        with Database() as db:
+            return db.query_one('SELECT MAX(id) FROM GameSettings')
