@@ -2,6 +2,7 @@
 
 # built-in imports
 import tkinter as tk
+import sys
 
 # local imports
 from mastermind.data.mastermind_data import color_list
@@ -105,8 +106,11 @@ class GamePage(tk.Frame):
         root.geometry("200x200")
         root.rowconfigure(1, weight=1)
         root.columnconfigure(1, weight=1)
+        root.grab_set()
+
         top_frame = tk.Frame(root)
         top_frame.grid(column=1, row=1)
+
         tk.Label(top_frame, text="Tyllyke du vandt!").grid(column=1, row=1, columnspan=2)
-        tk.Button(top_frame, text="Afslut").grid(column=1, row=2)
+        tk.Button(top_frame, text="Afslut", command=sys.exit).grid(column=1, row=2)
         tk.Button(top_frame, text="Gå til menuen").grid(column=2, row=2)

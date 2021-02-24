@@ -76,16 +76,20 @@ class CodeInputPage(tk.Frame):
         self.root1 = tk.Toplevel()
         tk.Label(self.root1, text="Nogle af kodefelterne er ikke udfyldt, udfyld disse og prøv igen").grid(column=1, row=1)
         tk.Button(self.root1, text="OK", command=self.close1).grid(column=1, row=2)
+        self.root1.grab_set()
 
     def error2(self):
         self.root2 = tk.Toplevel()
         tk.Label(self.root2, text="Du har indtastet den samme farve mere end én gang. Det er ikke tilladt med de nuværende regler. \n Ændre koden og prøv igen").grid(column=1, row=1)
         tk.Button(self.root2, text="OK", command=self.close2).grid(column=1, row=2)
+        self.root2.grab_set()
 
     def close1(self):
+        self.root1.grab_release()
         self.root1.destroy()
 
     def close2(self):
+        self.root2.grab_release()
         self.root2.destroy()
 
     def clear_color_mode(self):
