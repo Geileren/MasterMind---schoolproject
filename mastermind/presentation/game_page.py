@@ -64,7 +64,6 @@ class GamePage(tk.Frame):
         self.next_round_button = tk.Button(self, text="Næste Runde", command=self.next_round)
         self.next_round_button.grid(column=2, row=1, sticky="S", padx=10, pady=10)
 
-        tk.Button(self, text="win", command=self.win).grid(column=1,row=4)
 
     def clear_color_mode(self):
         if self.colormode_status == True:

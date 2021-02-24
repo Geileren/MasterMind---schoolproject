@@ -25,13 +25,7 @@ class SettingsMenuPage(tk.Frame):
         self.frame = tk.Frame(self, bg="#2E3440")
         self.frame.grid(column=1, row=1)
 
-        # Galaxy brain settings widgets and vars
-        self.galaxy_label = tk.Label(self.frame, text="Galaxy Brain sværhedsgrad", bg="#2E3440")
-        self.galaxy_label.grid(column=1, row=1)
-
-        self.galaxy_var = tk.IntVar()
-        self.galaxy_chech = tk.Checkbutton(self.frame, variable=self.galaxy_var, bg="#2E3440")
-        self.galaxy_chech.grid(column=2, row=1)
+    
 
         # Code settings widgets and vars
         self.code_var = tk.IntVar()

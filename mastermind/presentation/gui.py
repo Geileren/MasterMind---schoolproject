@@ -13,6 +13,7 @@ class MainApp(tk.Frame):
     def __init__(self, main=None):
         super().__init__(main)
         self.main = main
+        self.main.title("MasterMind")
         self.draw_widget()
         
 
