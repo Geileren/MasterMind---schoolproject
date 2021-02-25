@@ -124,8 +124,16 @@ class GamePage(tk.Frame):
         top_frame.grid(column=1, row=1)
 
         tk.Label(top_frame, text="Desvære du tabte :( \n du løb tør for runder").grid(column=1, row=1, columnspan=2)
-        tk.Button(top_frame, text="Afslut", command=sys.exit).grid(column=1, row=2)
-        tk.Button(top_frame, text="Gå til menuen", command=self.menu_return).grid(column=2, row=2)
+        tk.Button(top_frame, text="Afslut", command=sys.exit).grid(column=1, row=4)
+        tk.Button(top_frame, text="Gå til menuen", command=self.menu_return).grid(column=2, row=4)
+
+        tk.Label(top_frame, text="Den rigtige kode var:").grid(column=1, row=2, columnspan=2)
+
+        top_but_frame = tk.Frame(top_frame)
+        top_but_frame.grid(column=1, row=3, columnspan=2)
+
+        for i in range(4):
+            tk.Button(top_but_frame, state="disabled", bg=self.color_code.manual_code[i], width=5, height=2).grid(column=i+1, row=1)
 
 
     def win(self):
